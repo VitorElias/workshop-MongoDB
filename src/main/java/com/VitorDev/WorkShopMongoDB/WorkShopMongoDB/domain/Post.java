@@ -1,9 +1,13 @@
 package com.VitorDev.WorkShopMongoDB.WorkShopMongoDB.domain;
 
+import com.VitorDev.WorkShopMongoDB.WorkShopMongoDB.dto.AuthorDTO;
+import com.VitorDev.WorkShopMongoDB.WorkShopMongoDB.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -14,10 +18,11 @@ public class Post {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
+    private List<CommentDTO> comments = new ArrayList<>();
 
-    public Post(String id, Date date, String title, String body, User author) {
+    public Post(String id, Date date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -25,11 +30,23 @@ public class Post {
         this.author = author;
     }
 
-    public Post(Date date, String title, String body, User author) {
+    public Post() {
+
+    }
+
+    public Post(Date date, String title, String body, AuthorDTO author) {
         this.date = date;
         this.title = title;
         this.body = body;
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     public String getId() {
@@ -64,11 +81,11 @@ public class Post {
         this.body = body;
     }
 
-    public User getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 

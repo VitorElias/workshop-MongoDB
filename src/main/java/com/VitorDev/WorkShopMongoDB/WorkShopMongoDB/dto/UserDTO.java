@@ -41,4 +41,8 @@ public class UserDTO {
         this.email = email;
     }
 
+    public User fromDTO(){
+        return new User(this.getId(),this.getEmail(),this.getNome());
+    }
+
 }

@@ -30,4 +30,32 @@ public class UserService {
         }
         return new UserDTO(user.get());
     }
+
+    public User findByIdUser(String id) {
+        Optional<User> user = ur.findById(id);
+        if(user.isEmpty()){
+            throw new ObjectNotFoundException("Objeto Não encontrado");
+        }
+        return user.get();
+    }
+
+    public UserDTO create(User user){
+        return new UserDTO(ur.save(user));
+    }
+
+    public UserDTO update(UserDTO user,String id){
+
+        Optional<User> user2 = ur.findById(id);
+        User u = user2.get();
+
+        u.setNome(user.getNome());
+        u.setEmail(user.getEmail());
+
+        return new UserDTO(u);
+    }
+
+    public void delete(String id){
+        findById(id);
+        ur.deleteById(id);
+    }
 }

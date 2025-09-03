@@ -1,8 +1,7 @@
 package com.VitorDev.WorkShopMongoDB.WorkShopMongoDB.domain;
 
-
-import jakarta.annotation.Generated;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ public class User {
     private String nome;
     private String email;
 
+    @DBRef()
     private List<Post> posts = new ArrayList<>();
 
     public User() {
